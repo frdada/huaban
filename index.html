@@ -8,12 +8,50 @@
 </head>
 
 <body>
-    <div id="canvas1"></div>
+    <canvas id="canvas1" width="100px" height="100px"> 
+
+
+    </canvas>
+
     <script>
-        canvas1.onclick=(e) => {
-            
+        //画线
+        let canvas = document.getElementById("canvas1");
+        canvas.width = document.documentElement.clientWidth
+        canvas.height = document.documentElement.clientHeight
+     
+        let ctx = canvas.getContext("2d");
+        let painting = false
+
+        ctx.fillStyle = "black";
+        ctx.strokeStyle = 'none'
+        canvas.onmousedown = ()=>{
+            painting = true
+        }
+        canvas.onmousemove = (e)=>{
+            if(painting === true){ 
+                // ctx.fillRect (e.clientX - 5,e.clientY - 5,10,10);
+                ctx.beginPath();
+                ctx.arc(e.clientX,e.clientY,10,0,2*Math.PI);
+                ctx.stroke();
+                ctx.fill();
+            } else {
+                console.log('smd')
+                }
+        }
+    canvas.onmouseup = ()=>{
+        painting =false
+    }
+    </script>
+
+
+
+
+
+
+    <!-- <div id="canvas1"></div> -->
+    <!-- <script>
+        canvas1.onmousemove=(e) => {
             let div = document.createElement('div')
-            
             div.style.position = 'absolute'
             div.style.left = e.clientX + 'px'
             div.style.top = e.clientY + 'px'
@@ -26,10 +64,7 @@
             div.style.background = 'red'
             console.log(e)
             canvas1.appendChild(div)
-
         }
-
-
-    </script>
+    </script> -->
 </body>
 </html>
